@@ -1,0 +1,47 @@
+<%= form_for(@employee,html:{class: 'form-horizontal'}) do |f| %>
+<% if @employee.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+  <ul>
+    <% @employee.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="control-group">
+  <%= f.label :name, class: 'control-label'%>
+  <div class="controls">
+    <%= f.text_field :name %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :lastname, class: 'control-label'%>
+  <div class="controls">
+    <%= f.text_field :lastname %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :company, class: 'control-label'%>
+  <div class="controls">
+    <%= f.select :company_id, Company.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :country, class: 'control-label'%>
+  <div class="controls">
+    <%= f.select :country_id, Country.all.collect {|p| [ p.name_country, p.id ] }, { include_blank: true }%>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :photo, class: 'control-label'%>
+  <div class="controls">
+    <%= f.file_field :photo %>
+  </div>
+</div>
+<div class="controls">
+  <%= f.submit %>
+</div>  
+<% end %>

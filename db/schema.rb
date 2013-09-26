@@ -11,21 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130925034406) do
+ActiveRecord::Schema.define(version: 20130926042414) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
-    t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "companies", ["country_id"], name: "index_companies_on_country_id", using: :btree
 
   create_table "countries", force: true do |t|
     t.string   "name_country"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "employees", force: true do |t|
+    t.string   "name"
+    t.string   "lastname"
+    t.integer  "company_id"
+    t.integer  "country_id"
+    t.string   "photo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "employees", ["company_id"], name: "index_employees_on_company_id", using: :btree
+  add_index "employees", ["country_id"], name: "index_employees_on_country_id", using: :btree
 
 end
