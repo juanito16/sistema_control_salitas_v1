@@ -23,7 +23,7 @@
         <td><%= employee.email %></td>
         <td><%= employee.company.name %></td>
         <td><%= employee.country.name_country %></td>
-        <td><%= employee.photo %></td>
+        <td><%=image_tag(employee.photo.profile)%></td>
         <td><%= link_to 'Show', employee, class: 'btn btn-info' %></td>
         <td><%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-success' %></td>
         <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
