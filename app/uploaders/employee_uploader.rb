@@ -48,6 +48,10 @@ class EmployeeUploader < CarrierWave::Uploader::Base
     resize_to_fit(50, 50)
    end
 
+   version :show do
+    resize_to_fit(400,400)
+   end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list

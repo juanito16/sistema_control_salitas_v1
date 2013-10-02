@@ -1,32 +1,41 @@
-<p id="notice"><%= notice %></p>
+<%if notice.blank?%>
 
-<p>
-  <strong>Name:</strong>
-  <%= @employee.name %>
-</p>
+<%else%>
+<div class="alert fade in">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <h4><%= notice %></h4>
+</div>
+<%end%>
+<div class="span4">
+  <p>
+    <strong>Name:</strong>
+    <%= @employee.name %>
+  </p>
 
-<p>
-  <strong>Lastname:</strong>
-  <%= @employee.lastname %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= @employee.email %>
-</p>
-<p>
-  <strong>Company:</strong>
-  <%= @employee.company.name %>
-</p>
+  <p>
+    <strong>Lastname:</strong>
+    <%= @employee.lastname %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= @employee.email %>
+  </p>
+  <p>
+    <strong>Company:</strong>
+    <%= @employee.company.name %>
+  </p>
 
-<p>
-  <strong>Country:</strong>
-  <%= @employee.country.name_country %>
-</p>
-
-<p>
+  <p>
+    <strong>Country:</strong>
+    <%= @employee.country.name_country %>
+  </p>
+</div>
+<div class="span4">
   <strong>Photo:</strong>
-  <%= @employee.photo %>
-</p>
+  <p>
 
+    <%=image_tag(@employee.photo.show) %>
+  </p>
+</div>
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
 <%= link_to 'Back', employees_path %>
