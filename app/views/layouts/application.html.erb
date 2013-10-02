@@ -2,9 +2,8 @@
 <html>
 <head>
   <title>SistemaControlSalitasV1</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "jQuery v1.10.2"%>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+  <%= javascript_include_tag "jQueryv1.10.2"%>
   <%= javascript_include_tag "bootstrap.min" %>
   <%= javascript_include_tag "bootstrap_alert" %>
   <%= stylesheet_link_tag    "bootstrap.min" %>
@@ -23,14 +22,15 @@
 	          <a class="brand" href="#">salitas</a>
 	          <div class="nav-collapse collapse">
 	            <ul class="nav">
-	              <li ><%=link_to 'Home',root_path%></li>
-	              <li><%=link_to 'Agregar Empleado',employees_path%></li>
-	              <li><a href="#contact">Contact</a></li>
+	            	<li ><%=link_to 'Home',root_path%></li>
+	            	<li><%=link_to 'Agregar Empleado',employees_path%></li>
+	                <li><a href="#contact">Contact</a></li>
 	            </ul>
 	          </div><!--/.nav-collapse -->
 	        </div>
 	      </div>
 	    </div><br><br><br>
+	     
 <section class="container">
   
 <%= yield %>
