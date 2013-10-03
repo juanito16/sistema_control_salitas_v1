@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130926184310) do
+ActiveRecord::Schema.define(version: 20131003015146) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -38,5 +38,15 @@ ActiveRecord::Schema.define(version: 20130926184310) do
 
   add_index "employees", ["company_id"], name: "index_employees_on_company_id", using: :btree
   add_index "employees", ["country_id"], name: "index_employees_on_country_id", using: :btree
+
+  create_table "parlos", force: true do |t|
+    t.string   "name_parlo"
+    t.integer  "status"
+    t.integer  "country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "parlos", ["country_id"], name: "index_parlos_on_country_id", using: :btree
 
 end

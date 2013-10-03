@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name parlo:</strong>
+  <%= @parlo.name_parlo %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @parlo.status %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @parlo.country %>
+</p>
+
+<%= link_to 'Edit', edit_parlo_path(@parlo) %> |
+<%= link_to 'Back', parlos_path %>

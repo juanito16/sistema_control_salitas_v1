@@ -4,8 +4,8 @@ class EmployeesController < ApplicationController
   # GET /employees
   # GET /employees.json
   def index
-    
     @employees=Employee.paginate(:page => params[:page]).order('created_at DESC')
+    @active_employees="active"
   end
 
   # GET /employees/1

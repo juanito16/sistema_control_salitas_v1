@@ -1,4 +1,6 @@
 SistemaControlSalitasV1::Application.routes.draw do
+  resources :parlos
+
   resources :employees
 
   get "welcome/index"
