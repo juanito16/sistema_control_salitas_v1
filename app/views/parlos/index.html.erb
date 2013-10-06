@@ -59,6 +59,7 @@
       }
       #example_paginate{
         float: right;
+         
       }
 
 </style>
@@ -73,21 +74,20 @@
       <th></th>
     </tr>
   </thead>
-
   <tbody>
     <% @parlos.each do |parlo| %>
       <tr>
         <td><%= parlo.name_parlo %></td>
         <td><%= parlo.country.name_country %></td>
-        <td><%= link_to 'Show', parlo %></td>
-        <td><%= link_to 'Edit', edit_parlo_path(parlo) %></td>
-        <td><%= link_to 'Destroy', parlo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', parlo, class: 'btn btn-info' %></td>
+        <td><%= link_to 'Edit', edit_parlo_path(parlo),class: 'btn btn-success' %></td>
+        <td><%= link_to 'Destroy', parlo, method: :delete, data: { confirm: 'Are you sure?' },class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to 'New Parlo', new_parlo_path %>
+<%= link_to 'New Parlo', new_parlo_path, class: 'btn btn-primary' %>
 <script type="text/javascript">
   $(document).ready(function(){
       $('#example').dataTable();
