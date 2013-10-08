@@ -6,6 +6,7 @@ class ParlosController < ApplicationController
   def index
     @parlos = Parlo.all
     @active_parlos="active"
+    @parlo = Parlo.new
   end
 
   # GET /parlos/1

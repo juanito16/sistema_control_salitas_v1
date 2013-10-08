@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jQueryv1.10.2
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
