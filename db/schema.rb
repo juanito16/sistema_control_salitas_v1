@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131005030243) do
+ActiveRecord::Schema.define(version: 20131008045139) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -47,5 +47,19 @@ ActiveRecord::Schema.define(version: 20131005030243) do
   end
 
   add_index "parlos", ["country_id"], name: "index_parlos_on_country_id", using: :btree
+
+  create_table "reservations", force: true do |t|
+    t.integer  "parlo_id"
+    t.integer  "employee_id"
+    t.integer  "status"
+    t.date     "date_reservation"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservations", ["employee_id"], name: "index_reservations_on_employee_id", using: :btree
+  add_index "reservations", ["parlo_id"], name: "index_reservations_on_parlo_id", using: :btree
 
 end

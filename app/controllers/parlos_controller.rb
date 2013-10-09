@@ -4,8 +4,8 @@ class ParlosController < ApplicationController
   # GET /parlos
   # GET /parlos.json
   def index
-    @parlos = Parlo.all
     @active_parlos="active"
+    @parlos = Parlo.all
     @parlo = Parlo.new
   end
 

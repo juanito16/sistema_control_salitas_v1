@@ -1,1 +1,8 @@
-<h1>sisteme control salitas</h1>
+<h1>Sistema control salitas</h1>
+
+<%@parlos.each do |parlo|%>
+<div class="span4" style="border:1px solid red;margin-top:20px;text-align:center;background-color:#CD5454;">
+<h4><%=parlo.name_parlo%></h4>
+	<h5>Disponible</h5>
+</div>
+<%end%>

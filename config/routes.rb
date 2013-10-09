@@ -1,4 +1,6 @@
 SistemaControlSalitasV1::Application.routes.draw do
+  resources :reservations
+
   resources :parlos
 
   resources :employees

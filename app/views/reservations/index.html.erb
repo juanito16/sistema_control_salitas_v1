@@ -1,0 +1,36 @@
+<h1>Listing reservations</h1>
+
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Parlo</th>
+      <th>Employee</th>
+      <th>Status</th>
+      <th>Date reservation</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.parlo.name_parlo %></td>
+        <td><%= reservation.employee.name %></td>
+        <td><%= reservation.status %></td>
+        <td><%= reservation.date_reservation %></td>
+        <td><%= reservation.start_time %></td>
+        <td><%= reservation.end_time %></td>
+        <td><%= link_to 'Show', reservation %></td>
+        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reservation', new_reservation_path %>
