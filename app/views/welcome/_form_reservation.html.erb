@@ -1,0 +1,37 @@
+<%= form_for([@parlo, @parlo.reservations.build],:url=>reservations_path) do |f| %>
+<input type="text" name="reservation[parlo_id]" value="<%=@parlo.id%>">
+<input type="text" name="parlo[id]" value="<%=@parlo.id%>"> 
+<div class="control-group">
+  <%= f.label :employee,class: 'control-label' %>
+  <div class="controls">
+    <%= f.select :employee_id, Employee.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :status,class: 'control-label' %>
+  <div class="controls">
+    <%= f.number_field :status %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :date_reservation,class: 'control-label' %>
+  <div class="controls">
+    <%= f.date_field :date_reservation %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :start_time,class: 'control-label' %>
+  <div class="controls">
+    <%= f.time_field :start_time %>
+  </div>
+</div>
+<div class="control-group">
+  <%= f.label :end_time,class: 'control-label' %>
+  <div class="controls">
+    <%= f.time_field :end_time %>
+  </div>
+</div>
+<div class="controls">
+  <%= f.submit 'Save Shanges',class: "btn btn-primary" %>
+</div>
+<% end %>
