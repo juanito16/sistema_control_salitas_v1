@@ -13,7 +13,7 @@
     <h3 id="myModalLabel">Reservatios <%=parlo.name_parlo%></h3>
   </div>
   <div class="modal-body">
-    <%= form_for(@reservation,html:{class: 'form-horizontal'}) do |f| %>
+    <%= form_for(@reservation,html:{class: 'form-horizontal'},:url=>welcome_create_reservation_path,method: "post") do |f| %>
     <input type="hidden" name="reservation[parlo_id]" id="reservation_parlo_id" value="<%=parlo.id%>">
     <div class="control-group">
       <%= f.label :employee,class: 'control-label' %>
@@ -45,7 +45,6 @@
         <%= f.time_field :end_time %>
       </div>
     </div>
-   
   </div>
   <div class="modal-footer">
     <%= f.submit 'Save Shanges',class: "btn btn-primary" %>

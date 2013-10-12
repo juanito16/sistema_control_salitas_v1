@@ -6,6 +6,8 @@ SistemaControlSalitasV1::Application.routes.draw do
   resources :employees
 
   get "welcome/index"
+  get "welcome/show_reservations"
+  post "welcome/create_reservation"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
