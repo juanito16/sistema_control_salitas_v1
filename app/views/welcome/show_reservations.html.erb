@@ -1,4 +1,4 @@
-<p>numero reservaciones salita 1 <b><%=@reservation_for_parlo.size%></p>
+<p>numero reservaciones salita <b><%=@reservation_for_parlo.size%></p>
 <table>
 	<tr>
 		<th>Id Salita</th>
@@ -8,7 +8,7 @@
 	</tr>
 <%@reservation_for_parlo.each do |reservation_parlo| %>
 <tr>
-<td><%=reservation_parlo.parlo.id%></td>
+<td><%=reservation_parlo.id%></td>
 <td><%=reservation_parlo.parlo.name_parlo%></td>
 <td><%=reservation_parlo.employee.name%></td>
 <td><%=reservation_parlo.status%></td>

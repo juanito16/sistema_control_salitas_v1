@@ -1,11 +1,20 @@
 <h1>Sistema control salitas</h1>
 <%@parlos.each do |parlo|%>
+<%if parlo.reservations.blank?%>
 <a href="#" id="modal_views_reservations_<%=parlo.id%>">
-<div class="span4" style="border:1px solid red;margin-top:20px;text-align:center;background-color:#CD5454;">
-<h4><%=parlo.name_parlo%></h4>
-	<h5>Disponible</h5>
-</div>
+  <div class="span4" style="border:1px solid red;margin-top:20px;text-align:center;background-color:#CD5454;">
+    <h4><%=parlo.name_parlo%></h4>
+    <h5>Disponible</h5>
+  </div>
 </a>
+<%elsif parlo.reservations%>
+<%=link_to show_reservations_for_parlo_path(parlo) do%>
+    <div class="span4" style="border:1px solid blue;margin-top:20px;text-align:center;background-color:blue;">
+      <h4><%=parlo.name_parlo%></h4>
+      <h5>Disponible</h5>
+    </div>
+<%end%>
+<%end%>
 <!-- MODAL FORMULARIO RESERVACIONES -->
 <div id="modal_reservation_parlo_<%=parlo.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
@@ -13,7 +22,7 @@
     <h3 id="myModalLabel">Reservatios <%=parlo.name_parlo%></h3>
   </div>
   <div class="modal-body">
-    <%= form_for(@reservation,html:{class: 'form-horizontal'},:url=>welcome_create_reservation_path,method: "post") do |f| %>
+    <%= form_for(@reservation_parlo,html:{class: 'form-horizontal'},:url=>welcome_create_reservation_path,method: "POST") do |f| %>
     <input type="hidden" name="reservation[parlo_id]" id="reservation_parlo_id" value="<%=parlo.id%>">
     <div class="control-group">
       <%= f.label :employee,class: 'control-label' %>
@@ -50,14 +59,14 @@
     <%= f.submit 'Save Shanges',class: "btn btn-primary" %>
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
   </div>
-   <% end %>
+  <% end %>
 </div>
 <!-- FIN MODAL FORMULARIO RESERVACIONES -->
 <script type="text/javascript">
-	$('#modal_views_reservations_<%=parlo.id%>').on('click',function(e){
-	 e.preventDefault();
-	 $('#modal_reservation_parlo_<%=parlo.id%>').modal('show');
-	});
+$('#modal_views_reservations_<%=parlo.id%>').on('click',function(e){
+  e.preventDefault();
+  $('#modal_reservation_parlo_<%=parlo.id%>').modal('show');
+});
 </script>
 <%end%>
 
