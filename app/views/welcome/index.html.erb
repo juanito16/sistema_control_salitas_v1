@@ -9,10 +9,11 @@
 </a>
 <%elsif parlo.reservations%>
 <%=link_to show_reservations_for_parlo_path(parlo) do%>
-    <div class="span4" style="border:1px solid blue;margin-top:20px;text-align:center;background-color:blue;">
-      <h4><%=parlo.name_parlo%></h4>
-      <h5>Disponible</h5>
-    </div>
+<div class="span4" style="border:1px solid blue;margin-top:20px;text-align:center;background-color:purple;">
+  <input type="buttom" id="modal_views_reservations_<%=parlo.id%>" class="btn btn-link" value="agregar otra reservacion"> <strong><%=parlo.reservations.size%></strong> 
+  <h4><%=parlo.name_parlo%></h4>
+  <h5>Disponible</h5>
+</div>
 <%end%>
 <%end%>
 <!-- MODAL FORMULARIO RESERVACIONES -->

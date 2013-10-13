@@ -1,17 +1,21 @@
 <p>numero reservaciones salita <b><%=@reservation_for_parlo.size%></p>
-<table>
-	<tr>
-		<th>Id Salita</th>
-		<th>Nombre Salita</th>
-		<th>Nombre Empleado</th>
-		<th>Status</th>
-	</tr>
-<%@reservation_for_parlo.each do |reservation_parlo| %>
-<tr>
-<td><%=reservation_parlo.id%></td>
-<td><%=reservation_parlo.parlo.name_parlo%></td>
-<td><%=reservation_parlo.employee.name%></td>
-<td><%=reservation_parlo.status%></td>
-</tr>
-<%end%>
+<table class="table table-striped table-bordered table-condensed">
+	<thead>
+		<tr>
+			<th>Id Salita</th>
+			<th>Nombre Salita</th>
+			<th>Nombre Empleado</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@reservation_for_parlo.each do |reservation_parlo| %>
+		<tr>
+			<td><%=reservation_parlo.id%></td>
+			<td><%=reservation_parlo.parlo.name_parlo%></td>
+			<td><%=reservation_parlo.employee.name%></td>
+			<td><%=reservation_parlo.status%></td>
+		</tr>
+		<%end%>
+	</tbody>
 </table>

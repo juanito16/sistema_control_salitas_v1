@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
   def create_reservation
     @reservation_new = Reservation.new(reservation_params)
     @reservation_new.save
-    redirect_to welcome_index_path    
+    redirect_to welcome_index_path, notice: 'Reservation was successfully created.'    
   end
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
