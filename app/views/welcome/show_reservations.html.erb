@@ -1,4 +1,4 @@
-<p>numero reservaciones salita <b><%=@reservation_for_parlo.size%></p>
+<p>numero reservaciones salita <b><%=@reservation_for_parlo.size%></b></p>
 <table class="table table-striped table-bordered table-condensed">
 	<thead>
 		<tr>
@@ -6,6 +6,9 @@
 			<th>Nombre Salita</th>
 			<th>Nombre Empleado</th>
 			<th>Status</th>
+			<th>Inicio</th>
+			<th>Final</th>
+			<th>Reservations</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,6 +18,9 @@
 			<td><%=reservation_parlo.parlo.name_parlo%></td>
 			<td><%=reservation_parlo.employee.name%></td>
 			<td><%=reservation_parlo.status%></td>
+			<td><%=reservation_parlo.start_time.strftime("%I:%M %p")%></td>
+			<td><%=reservation_parlo.end_time.strftime("%I:%M %p")%></td>
+			<td><%=reservation_parlo.created_at.strftime("%d-%b-%Y")%></td>
 		</tr>
 		<%end%>
 	</tbody>

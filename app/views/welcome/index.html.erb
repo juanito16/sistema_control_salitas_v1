@@ -3,16 +3,17 @@
 <%if parlo.reservations.blank?%>
 <a href="#" id="modal_views_reservations_<%=parlo.id%>">
   <div class="span4" style="border:1px solid red;margin-top:20px;text-align:center;background-color:#CD5454;">
+    <input type="buttom" id="" class="btn btn-link" value="Reservaciones"><span class="badge badge-important"><%=parlo.reservations.size%></span>
     <h4><%=parlo.name_parlo%></h4>
     <h5>Disponible</h5>
   </div>
 </a>
 <%elsif parlo.reservations%>
 <%=link_to show_reservations_for_parlo_path(parlo) do%>
-<div class="span4" style="border:1px solid blue;margin-top:20px;text-align:center;background-color:purple;">
-  <input type="buttom" id="modal_views_reservations_<%=parlo.id%>" class="btn btn-link" value="agregar otra reservacion"> <strong><%=parlo.reservations.size%></strong> 
+<div class="span4" style="border:1px solid blue;margin-top:20px;text-align:center;background-color:#CCC;">
+  <input type="buttom" id="modal_views_reservations_<%=parlo.id%>" class="btn btn-link" value="agregar otra reservacion"><span class="badge badge-important"><%=parlo.reservations.size%></span> 
   <h4><%=parlo.name_parlo%></h4>
-  <h5>Disponible</h5>
+  <h5>Ocupada</h5>
 </div>
 <%end%>
 <%end%>
