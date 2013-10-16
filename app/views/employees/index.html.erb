@@ -1,70 +1,5 @@
-
-<style type="text/css">
-  #example_length{
-    float: left;
-  }
-  #example_filter{
-    margin-left: 79%;
-  }
-
-  #example_paginate {
-    background: white;
-    cursor: default;
-    /* self-clearing method: */ }
-    #example_paginate a, #example_paginate span, #example_paginate em {
-      padding: 0.2em 0.5em;
-      display: block;
-      float: left;
-      margin-right: 1px; }
-    #example_paginate .disabled {
-      color: #999999;
-      border: 1px solid #dddddd; }
-    #example_paginate .current {
-      font-style: normal;
-      font-weight: bold;
-      background: #2e6ab1;
-      color: white;
-      border: 1px solid #2e6ab1; }
-    #example_paginate a {
-      text-decoration: none;
-      color: #105cb6;
-      border: 1px solid #9aafe5; }
-      #example_paginate a:hover, #example_paginate a:focus {
-        color: #000033;
-        border-color: #000033; }
-    #example_paginate .page_info {
-      background: #2e6ab1;
-      color: white;
-      padding: 0.4em 0.6em;
-      width: 22em;
-      margin-bottom: 0.3em;
-      text-align: center; }
-      #example_paginate .page_info b {
-        color: #000033;
-        background: #6aa6ed;
-        padding: 0.1em 0.25em; }
-    #example_paginate:after {
-      content: ".";
-      display: block;
-      height: 0;
-      clear: both;
-      visibility: hidden; }
-    * html #example_paginate {
-      height: 1%; }
-    *:first-child + html #example_paginate {
-      overflow: hidden; }
-
-      #example_info{
-        color: #105cb6;
-        display: inline-block;
-      }
-      #example_paginate{
-        float: right;
-      }
-
-</style>
 <%= link_to 'New Employee', new_employee_path, :class=>'btn btn-primary pull-right ' %><br><br>
-<table class="table table-striped table-bordered table-condensed" id="example">
+<table class="table table-striped table-bordered table-condensed" id="table_empleados">
   <thead>
     <tr>
       <th>Photo</th>
@@ -93,9 +28,10 @@
       </tr>
     <% end %>
   </tbody>
-</table>
-<script type="text/javascript">
+  <script type="text/javascript">
   $(document).ready(function() {
-      $('#example').dataTable();
+      $('#table_empleados').dataTable();
   });
 </script>
+</table>
+
