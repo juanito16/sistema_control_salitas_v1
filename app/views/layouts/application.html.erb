@@ -2,38 +2,52 @@
 <html>
 <head>
   <title>SistemaControlSalitasV1</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  	<!-- stilos bootstrap -->
+  	<%= stylesheet_link_tag    "bootstrap.min"%>
+  	<%= stylesheet_link_tag  "bootstrap-responsive.min"%>
+  <!-- fin stilos bootstrap -->
+  	<%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="navbar navbar-inverse fixed-top">
-	      <div class="navbar-inner">
-	        <div class="container">
-	          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	          <a class="brand" href="#">salitas</a>
-	          <div class="nav-collapse collapse">
-	            <ul class="nav">
-	            	<li class="<%=@active_home%>"><%=link_to 'Home',welcome_index_path%></li>
-	            	<li class="<%=@active_employees%>"><%=link_to 'Agregar Empleado',employees_path%></li>
-	                <li class="<%=@active_parlos%>"><%=link_to 'Agregar Salita', parlos_path%></li>
-	                <li><%=link_to 'Reservaciones',reservations_path%></li>
-	            </ul>
-	          </div><!--/.nav-collapse -->
-	        </div>
-	      </div>
-	    </div>
-<section class="container-fluid">
+	    <div class="navbar navbar-inverse navbar-fixed-top">
+	          <div class="navbar-inner">
+	            <div class="container-fluid">
+	              <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	              </button>
+	              <a class="brand" href="#">Project name</a>
+	              <div class="nav-collapse collapse">
+	                <p class="navbar-text pull-right">
+	                  Logged in as <a href="#" class="navbar-link">Username</a>
+	                </p>
+	                <ul class="nav">
+	                	<li class="<%=@active_home%>"><%=link_to 'Home',welcome_index_path%></li>
+	            		<li class="<%=@active_employees%>"><%=link_to 'Agregar Empleado',employees_path%></li>
+	                	<li class="<%=@active_parlos%>"><%=link_to 'Agregar Salita', parlos_path%></li>
+	                	<li><%=link_to 'Reservaciones',reservations_path%></li>
+	                </ul>
+	              </div><!--/.nav-collapse -->
+	            </div>
+	          </div>
+	        </div><br><br><br>
+<section class="container">
+	<section class="row">
 
 <%= yield %>
+</section>
 
 </section>
 </body>
+<%= javascript_include_tag "bootstrap.min" %>
+<%= javascript_include_tag "bootstrap_alert"%>
+<%= javascript_include_tag "bootstrap_popover"%>
+<%= javascript_include_tag "modal" %>
+<%= javascript_include_tag "jquery.dataTables.min" %>
 <%= javascript_include_tag "scripts" %>
 <%= javascript_include_tag "DT_bootstrap" %>
 </html>
