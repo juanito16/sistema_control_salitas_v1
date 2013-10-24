@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  layout "sistema_control_salitas"
+  
   def index
   	@active_home="active"
   	@parlos = Parlo.where("country_id=?",1)

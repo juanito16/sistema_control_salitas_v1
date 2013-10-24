@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
-
+  layout "sistema_control_salitas"
   # GET /employees
   # GET /employees.json
   def index

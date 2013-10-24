@@ -1,5 +1,6 @@
 class ParlosController < ApplicationController
   before_action :set_parlo, only: [:show, :edit, :update, :destroy]
+  layout "sistema_control_salitas"
 
   # GET /parlos
   # GET /parlos.json
