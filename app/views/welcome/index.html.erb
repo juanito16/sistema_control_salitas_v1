@@ -1,24 +1,25 @@
-<div class="row-fluid">
+<div class="span12">
+  <h1>Sistema control salitas</h1>
+<div class="row">
   <div class="span12">
-<h1>Sistema control salitas</h1>
-<div class="row-fluid">
+  <ul class="thumbnails">
   <%@parlos.each do |parlo|%>
   <%if parlo.reservations.blank?%>
-  <div class="span4" style="border:1px solid red;margin-top:10px;text-align:center;background-color:#CD5454;">
-    <a href="#" id="modal_views_reservations_<%=parlo.id%>">
+  <li class="span3" style="text-align:center;background-color:#CD5454;">
+    <a href="#" id="modal_views_reservations_<%=parlo.id%>" class="thumbnail">
       <input type="buttom" id="" class="btn btn-link" value="Reservaciones"><span class="badge badge-important pull-right"><%=parlo.reservations.size%></span>
       <h4><%=parlo.name_parlo%></h4>
       <h5>Disponible</h5>
     </a>
-  </div>
+  </li>
   <%elsif parlo.reservations%>
-  <div class="span4" style="border:1px solid blue;margin-top:10px;text-align:center;background-color:#CCC;">
-    <%=link_to show_reservations_for_parlo_path(parlo) do%>
+  <li class="span3" style="text-align:center;background-color:#CCC;">
+    <%=link_to show_reservations_for_parlo_path(parlo),class: "thumbnail" do%>
     <input type="buttom" id="modal_views_reservations_<%=parlo.id%>" class="btn btn-link" value="agregar otra reservacion"><span class="badge badge-important pull-right"><%=parlo.reservations.size%></span> 
     <h4><%=parlo.name_parlo%></h4>
     <h5>Ocupada</h5>
     <%end%>
-  </div>
+  </li>
   <%end%>
   <!-- MODAL FORMULARIO RESERVACIONES -->
   <div id="modal_reservation_parlo_<%=parlo.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -74,9 +75,12 @@
   });
   </script>
   <%end%>
+  </ul>
 </div>
 </div>
 </div>
+
+
 
 
 
