@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  layout "sistema_control_salitas"
+  
   def index
   	@active_home="active"
   	@parlos = Parlo.where("country_id=?",1)
@@ -7,7 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def show_reservations
-      @reservation_for_parlo=Reservation.includes(:parlo,:employee).where("parlos.id=?",params[:id])    
+      @reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",params[:id]).references(:parlo)
   end
 
   def create_reservation

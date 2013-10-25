@@ -1,39 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SistemaControlSalitasV1</title>
+  <title>Sistema Control Salitas</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<div class="navbar navbar-inverse fixed-top">
-	      <div class="navbar-inner">
-	        <div class="container">
-	          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	          <a class="brand" href="#">salitas</a>
-	          <div class="nav-collapse collapse">
-	            <ul class="nav">
-	            	<li class="<%=@active_home%>"><%=link_to 'Home',welcome_index_path%></li>
-	            	<li class="<%=@active_employees%>"><%=link_to 'Agregar Empleado',employees_path%></li>
-	                <li class="<%=@active_parlos%>"><%=link_to 'Agregar Salita', parlos_path%></li>
-	                <li><%=link_to 'Reservaciones',reservations_path%></li>
-	            </ul>
-	          </div><!--/.nav-collapse -->
-	        </div>
-	      </div>
-	    </div>
-<section class="container-fluid">
-
-<%= yield %>
-
-</section>
-
+  <%= yield %>
 </body>
 </html>
 

@@ -1,74 +1,87 @@
-<h1>Sistema control salitas</h1>
-<%@parlos.each do |parlo|%>
-<%if parlo.reservations.blank?%>
-<a href="#" id="modal_views_reservations_<%=parlo.id%>">
-  <div class="span4" style="border:1px solid red;margin-top:20px;text-align:center;background-color:#CD5454;">
-    <input type="buttom" id="" class="btn btn-link" value="Reservaciones"><span class="badge badge-important"><%=parlo.reservations.size%></span>
+<div class="span12">
+  <h1>Sistema control salitas</h1>
+<div class="row">
+  <div class="span12">
+  <ul class="thumbnails">
+  <%@parlos.each do |parlo|%>
+  <%if parlo.reservations.blank?%>
+  <li class="span4" style="text-align:center;background-color:#DEA1A1;">
+    <a href="#" id="modal_views_reservations_<%=parlo.id%>" class="thumbnail">
+      <input type="buttom" id="" class="btn btn-link" value="Reservaciones"><span class="badge badge-important pull-right"><%=parlo.reservations.size%></span>
+      <h4><%=parlo.name_parlo%></h4>
+      <h5>Disponible</h5>
+    </a>
+  </li>
+  <%elsif parlo.reservations%>
+  <li class="span4" style="text-align:center;background-color:#CCC;">
+    <%=link_to show_reservations_for_parlo_path(parlo),class: "thumbnail" do%>
+    <input type="buttom" id="modal_views_reservations_<%=parlo.id%>" class="btn btn-link" value="agregar otra reservacion"><span class="badge badge-important pull-right"><%=parlo.reservations.size%></span>
     <h4><%=parlo.name_parlo%></h4>
-    <h5>Disponible</h5>
+    <h5>Ocupada</h5>
+    <%end%>
+  </li>
+  <%end%>
+  <!-- MODAL FORMULARIO RESERVACIONES -->
+  <div id="modal_reservation_parlo_<%=parlo.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <%= form_for(@reservation_parlo,html:{class: 'form-horizontal'},:url=>welcome_create_reservation_path,method: "POST") do |f| %>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Reservatios <%=parlo.name_parlo%></h3>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" name="reservation[parlo_id]" id="reservation_parlo_id" value="<%=parlo.id%>">
+      <div class="control-group">
+        <%= f.label :employee,class: 'control-label' %>
+        <div class="controls">
+          <%= f.select :employee_id, Employee.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :status,class: 'control-label' %>
+        <div class="controls">
+          <%= f.number_field :status %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :date_reservation,class: 'control-label' %>
+        <div class="controls">
+          <%= f.date_field :date_reservation %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :start_time,class: 'control-label' %>
+        <div class="controls">
+          <%= f.time_field :start_time %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :end_time,class: 'control-label' %>
+        <div class="controls">
+          <%= f.time_field :end_time %>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit 'Save Shanges',class: "btn btn-primary" %>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+    <% end %>
   </div>
-</a>
-<%elsif parlo.reservations%>
-<%=link_to show_reservations_for_parlo_path(parlo) do%>
-<div class="span4" style="border:1px solid blue;margin-top:20px;text-align:center;background-color:#CCC;">
-  <input type="buttom" id="modal_views_reservations_<%=parlo.id%>" class="btn btn-link" value="agregar otra reservacion"><span class="badge badge-important"><%=parlo.reservations.size%></span> 
-  <h4><%=parlo.name_parlo%></h4>
-  <h5>Ocupada</h5>
+  <!-- FIN MODAL FORMULARIO RESERVACIONES -->
+  <script type="text/javascript">
+  $('#modal_views_reservations_<%=parlo.id%>').on('click',function(e){
+    e.preventDefault();
+    $('#modal_reservation_parlo_<%=parlo.id%>').modal('show');
+  });
+  </script>
+  <%end%>
+  </ul>
 </div>
-<%end%>
-<%end%>
-<!-- MODAL FORMULARIO RESERVACIONES -->
-<div id="modal_reservation_parlo_<%=parlo.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <%= form_for(@reservation_parlo,html:{class: 'form-horizontal'},:url=>welcome_create_reservation_path,method: "POST") do |f| %>
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Reservatios <%=parlo.name_parlo%></h3>
-  </div>
-  <div class="modal-body">
-    <input type="hidden" name="reservation[parlo_id]" id="reservation_parlo_id" value="<%=parlo.id%>">
-    <div class="control-group">
-      <%= f.label :employee,class: 'control-label' %>
-      <div class="controls">
-        <%= f.select :employee_id, Employee.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :status,class: 'control-label' %>
-      <div class="controls">
-        <%= f.number_field :status %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :date_reservation,class: 'control-label' %>
-      <div class="controls">
-        <%= f.date_field :date_reservation %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :start_time,class: 'control-label' %>
-      <div class="controls">
-        <%= f.time_field :start_time %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :end_time,class: 'control-label' %>
-      <div class="controls">
-        <%= f.time_field :end_time %>
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <%= f.submit 'Save Shanges',class: "btn btn-primary" %>
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  </div>
-  <% end %>
 </div>
-<!-- FIN MODAL FORMULARIO RESERVACIONES -->
-<script type="text/javascript">
-$('#modal_views_reservations_<%=parlo.id%>').on('click',function(e){
-  e.preventDefault();
-  $('#modal_reservation_parlo_<%=parlo.id%>').modal('show');
-});
-</script>
-<%end%>
+</div>
+
+
+
+
+
 
