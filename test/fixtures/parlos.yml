@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name_parlo: MyString
+  status: 1
+  country_id: 
+
+two:
+  name_parlo: MyString
+  status: 1
+  country_id: 

@@ -1,11 +1,20 @@
 SistemaControlSalitasV1::Application.routes.draw do
+  resources :reservations
+
+  resources :parlos
+
+  resources :employees
+
   get "welcome/index"
+  # get "welcome/show_reservations"
+  post "welcome/create_reservation"
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'
-
+  get "welcome/show_reservations/:id" => "welcome#show_reservations", as: "show_reservations_for_parlo"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
