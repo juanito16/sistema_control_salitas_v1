@@ -9,7 +9,7 @@ class WelcomeController < ApplicationController
   end
 
   def show_reservations
-      @reservation_for_parlo=Reservation.includes(:parlo,:employee).where("parlos.id=?",params[:id])    
+      @reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",params[:id]).references(:parlo)
   end
 
   def create_reservation

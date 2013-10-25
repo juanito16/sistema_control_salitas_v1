@@ -23,14 +23,12 @@
         <td><%= reservation.date_reservation %></td>
         <td><%= reservation.start_time %></td>
         <td><%= reservation.end_time %></td>
-        <td><%= link_to 'Show', reservation %></td>
-        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<i class="icon-zoom-in icon-white"></i>'.html_safe, reservation,class: "btn btn-info" %></td>
+        <td><%= link_to '<i class="icon-edit icon-white"></i>'.html_safe, edit_reservation_path(reservation),class: "btn btn-success" %></td>
+        <td><%= link_to '<i class="icon-trash icon-white"></i>'.html_safe, reservation, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Reservation', new_reservation_path %>
+<%= link_to 'New Reservation', new_reservation_path,class: "btn btn-primary" %>
