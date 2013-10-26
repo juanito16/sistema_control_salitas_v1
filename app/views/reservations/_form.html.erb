@@ -1,4 +1,4 @@
-<%= form_for(@reservation) do |f| %>
+<%= form_for(@reservation,html:{class: "form-horizontal"}) do |f| %>
   <% if @reservation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
@@ -9,31 +9,45 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :parlo %><br>
-    <%= f.select :parlo_id, Parlo.all.collect {|p| [ p.name_parlo, p.id ] }, { include_blank: true }%>
+  <div class="control-group">
+    <%= f.label :parlo,class: "control-label" %>
+    <div class="controls">
+    <%= f.select(:parlo_id, Parlo.all.collect {|p| [ p.name_parlo, p.id ] }, { include_blank: true })%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :employee %><br>
-    <%= f.select :employee_id, Employee.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }%>
+  <div class="control-group">
+    <%= f.label :employee ,class: "control-label"%>
+    <div class="controls">
+    <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :status %><br>
+  <div class="control-group">
+    <%= f.label :status,class: "control-label" %>
+    <div class="controls">
     <%= f.number_field :status %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :date_reservation %><br>
+  <div class="control-group">
+    <%= f.label :date_reservation,class: "control-label" %>
+    <div class="controls">
     <%= f.date_field :date_reservation %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :start_time %><br>
+  <div class="control-group">
+    <%= f.label :start_time,class: "control-label" %>
+    <div class="controls">
     <%= f.time_field :start_time %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :end_time %><br>
+  <div class="control-group">
+    <%= f.label :end_time,class: "control-label" %>
+    <div class="controls">
     <%= f.time_field :end_time %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="control-group">
+    <div class="controls">
+    <%= f.submit class: "btn btn-primary"%>
+    </div>
   </div>
 <% end %>
