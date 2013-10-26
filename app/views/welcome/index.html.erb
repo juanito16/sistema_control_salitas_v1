@@ -33,7 +33,7 @@
       <div class="control-group">
         <%= f.label :employee,class: 'control-label' %>
         <div class="controls">
-          <%= f.select :employee_id, Employee.all.collect {|p| [ p.name, p.id ] }, { include_blank: true } %>
+          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })%>
         </div>
       </div>
       <div class="control-group">
@@ -45,19 +45,39 @@
       <div class="control-group">
         <%= f.label :date_reservation,class: 'control-label' %>
         <div class="controls">
-          <%= f.date_field :date_reservation %>
+          <div id="datetimepicker_<%=parlo.id%>" class="input-append">
+              <input data-format="dd-MM-yyyy" type="text" name="reservation[date_reservation]">
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+              </span>
+          </div>
         </div>
       </div>
       <div class="control-group">
         <%= f.label :start_time,class: 'control-label' %>
         <div class="controls">
-          <%= f.time_field :start_time %>
+          <%#= f.time_field :start_time %>
+          <div id="start_time_<%=parlo.id%>" class="input-append">
+              <input data-format="HH:mm PP" type="text" name="reservation[start_time]">
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+              </span>
+            </div>
         </div>
       </div>
       <div class="control-group">
         <%= f.label :end_time,class: 'control-label' %>
         <div class="controls">
-          <%= f.time_field :end_time %>
+          <%#= f.time_field :end_time %>
+          <div id="end_time_<%=parlo.id%>" class="input-append">
+              <input data-format="HH:mm PP" type="text" name="reservation[end_time]">
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                </i>
+              </span>
+            </div>
         </div>
       </div>
     </div>
@@ -73,12 +93,34 @@
     e.preventDefault();
     $('#modal_reservation_parlo_<%=parlo.id%>').modal('show');
   });
+  $(function() {
+    $('#datetimepicker_<%=parlo.id%>').datetimepicker({
+      pickTime: false
+    });
+  });
+  $(function() {
+      $('#start_time_<%=parlo.id%>').datetimepicker({
+        pickDate: false,
+        pick12HourFormat: true
+
+      });
+    });
+  $(function() {
+      $('#end_time_<%=parlo.id%>').datetimepicker({
+        pickDate: false,
+        pick12HourFormat: true
+
+      });
+    });
+       
   </script>
   <%end%>
   </ul>
 </div>
 </div>
 </div>
+
+
 
 
 
