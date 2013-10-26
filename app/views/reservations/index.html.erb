@@ -1,5 +1,5 @@
 <div class="span12">
-<h1>Listing reservations</h1>
+<h1>Lista de reservaciones</h1>
 
 <table class="table table-striped table-bordered table-condensed">
   <thead>
@@ -10,9 +10,9 @@
       <th>Date reservation</th>
       <th>Start time</th>
       <th>End time</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Mostrar</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
     </tr>
   </thead>
   <tbody>
@@ -22,8 +22,8 @@
         <td><%= reservation.employee.name %></td>
         <td><%= reservation.status %></td>
         <td><%= reservation.date_reservation %></td>
-        <td><%= reservation.start_time %></td>
-        <td><%= reservation.end_time %></td>
+        <td><%= reservation.start_time.strftime("%I:%M %p") %></td>
+        <td><%= reservation.end_time.strftime("%I:%M %p") %></td>
         <td><%= link_to '<i class="icon-zoom-in icon-white"></i>'.html_safe, reservation,class: "btn btn-info" %></td>
         <td><%= link_to '<i class="icon-edit icon-white"></i>'.html_safe, edit_reservation_path(reservation),class: "btn btn-success" %></td>
         <td><%= link_to '<i class="icon-trash icon-white"></i>'.html_safe, reservation, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
