@@ -33,7 +33,7 @@
       <div class="control-group">
         <%= f.label :employee,class: 'control-label' %>
         <div class="controls">
-          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name, p.id ] }, { include_blank: true })%>
+          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name, p.id ] }, { include_blank: true },class: "chosen-select",style: "width:350px;")%>
         </div>
       </div>
       <div class="control-group">
@@ -110,6 +110,8 @@
         pick12HourFormat: true
       });
     });
+
+ 
        
   </script>
   <%end%>
@@ -117,6 +119,15 @@
 </div>
 </div>
 </div>
+ <%= javascript_include_tag "/assets/javascripts/chosen.jquery.min" %>
+ <script type="text/javascript">
+   var config = {
+    '.chosen-select' : {width:"248px"},
+  }
+  for (var selector in config) {
+    $(selector).chosen(config[selector]);
+  }
+ </script>
 
 
 
