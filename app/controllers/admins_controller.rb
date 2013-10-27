@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
   before_action :set_admin, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate_admin!
+  layout "sistema_control_salitas"
   # GET /admins
   # GET /admins.json
   def index

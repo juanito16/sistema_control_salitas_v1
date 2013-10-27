@@ -1,5 +1,6 @@
 class ParlosController < ApplicationController
   before_action :set_parlo, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_admin!
   layout "sistema_control_salitas"
 
   # GET /parlos

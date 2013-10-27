@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  
+  before_filter :authenticate_admin!
   layout "sistema_control_salitas"
   
   def index
@@ -19,6 +19,7 @@ class WelcomeController < ApplicationController
     redirect_to welcome_index_path, notice: 'Reservation was successfully created.'    
   end
     # Never trust parameters from the scary internet, only allow the white list through.
+  private
     def reservation_params
       params.require(:reservation).permit(:parlo_id, :employee_id, :status, :date_reservation, :start_time, :end_time)
     end

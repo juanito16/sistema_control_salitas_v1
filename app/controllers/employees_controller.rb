@@ -1,5 +1,6 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_admin!
   layout "sistema_control_salitas"
   # GET /employees
   # GET /employees.json
