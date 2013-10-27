@@ -1,4 +1,7 @@
 SistemaControlSalitasV1::Application.routes.draw do
+  devise_for :admins
+  resources :admins
+
   resources :reservations
 
   resources :parlos

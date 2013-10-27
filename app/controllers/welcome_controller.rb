@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+  
   layout "sistema_control_salitas"
   
   def index
