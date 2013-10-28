@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
   
   def index
   	@active_home="active"
-  	@parlos = Parlo.where("country_id=?",1)
+  	@parlos = Parlo.where("country_id=?",current_admin.country_id)
   	#@reservations=Reservation.includes(:parlo,:employee).where("parlos.id=? and employees.id=? and parlos.country_id=?",@parlo,1,1)
     @reservation_parlo = Reservation.new
   end
