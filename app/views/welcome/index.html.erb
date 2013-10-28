@@ -1,4 +1,4 @@
-<%= javascript_include_tag "/assets/javascripts/chosen.jquery.min" %>
+<%=javascript_include_tag "/assets/javascripts/chosen.jquery.min" %>
 <div class="span12">
   <h1>Sistema control salitas</h1>
 <div class="row">
@@ -34,7 +34,7 @@
       <div class="control-group">
         <%= f.label :employee,class: 'control-label' %>
         <div class="controls">
-          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+''+p.lastname, p.id ] }, { include_blank: true },class: "chosen-select_#{parlo.id}")%>
+          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+''+p.lastname, p.id ] }, { include_blank: true },id: "chosen-select_#{parlo.id}")%>
         </div>
       </div>
       <div class="control-group">
@@ -112,7 +112,7 @@
       });
     });
      var config = {
-    '.chosen-select_<%=parlo.id%>' : {width:"251px"}
+    '#chosen-select_<%=parlo.id%>' : {width:"251px"}
   }
   for (var selector in config) {
     $(selector).chosen(config[selector]);
@@ -123,10 +123,6 @@
  </div>
 </div>
 </div>
- 
- <script type="text/javascript">
-
- </script>
 
 
 
