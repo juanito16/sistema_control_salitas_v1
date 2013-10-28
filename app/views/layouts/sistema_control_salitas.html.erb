@@ -30,7 +30,8 @@
     <!-- Fav and touch icons -->
   </head>
   <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <!-- ////////////////////////////////////////////// -->
+     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -46,29 +47,27 @@
                 <li class="<%=@active_parlos%>"><%=link_to "<i class='icon-book icon-white'></i>&nbsp;Agregar Salita".html_safe, parlos_path%></li> 
                 <li><%=link_to "<i class='icon-list-alt icon-white'></i>&nbsp;Reservasiones".html_safe,reservations_path%></li>
             </ul>
+          <div class="pull-right">
             <ul class="nav pull-right">
-              <li><a href="#">fotos</a></li>
-              <li class="divider-vertical"></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=current_admin.email%><b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><%=link_to t("admin_menu.logout"),destroy_admin_session_path(:authenticity_token => form_authenticity_token()), :method=>:delete%></li>
-                </ul>
-              </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <%=current_admin.name%><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/user/preferences"><i class="icon-cog"></i> Preferences</a></li>
+                        <li><a href="/help/support"><i class="icon-envelope"></i> Contact Support</a></li>
+                        <li class="divider"></li>
+                        <li><%=link_to "<i class='icon-off'></i> Logout".html_safe,destroy_admin_session_path(:authenticity_token => form_authenticity_token()), :method=>:delete%></li>
+                    </ul>
+                </li>
             </ul>
+          </div>
           <!--   <form class="navbar-form pull-right">
               <input class="span2" type="text" placeholder="Email">
               <input class="span2" type="password" placeholder="Password">
               <button type="submit" class="btn">Sign in</button>
             </form> -->
-          </div><!--/.nav-collapse -->
-        </div>
+          </div>
+     </div>
       </div>
-    </div>
+    </div> 
     <div class="container">
 
       <!-- Main hero unit for a primary marketing message or call to action -->
