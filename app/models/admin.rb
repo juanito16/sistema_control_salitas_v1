@@ -5,4 +5,5 @@ class Admin < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :country
+  validates :email,:uniqueness=>true
 end

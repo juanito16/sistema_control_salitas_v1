@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027210508) do
+ActiveRecord::Schema.define(version: 20131028035709) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
     t.string   "lastname"
-    t.integer  "type"
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -30,6 +29,7 @@ ActiveRecord::Schema.define(version: 20131027210508) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "admin_type"
   end
 
   add_index "admins", ["country_id"], name: "index_admins_on_country_id", using: :btree

@@ -12,12 +12,12 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @admin.type %>
+  <%= @admin.admin_type %>
 </p>
 
 <p>
   <strong>Country:</strong>
-  <%= @admin.country %>
+  <%= @admin.country.name_country %>
 </p>
 
 <%= link_to 'Edit', edit_admin_path(@admin) %> |

@@ -1,5 +1,5 @@
 SistemaControlSalitasV1::Application.routes.draw do
-  devise_for :admins
+  devise_for :admins,:skip=>[:registration]
   resources :admins
 
   resources :reservations

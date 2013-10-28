@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_admin!
+  before_action :set_admin, only: [:show, :edit, :update, :destroy]
   layout "sistema_control_salitas"
   # GET /admins
   # GET /admins.json
@@ -70,6 +70,6 @@ class AdminsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_params
-      params.require(:admin).permit(:name, :lastname, :type, :country_id)
+      params.require(:admin).permit(:name, :lastname,:admin_type,:country_id,:password,:email)
     end
 end
