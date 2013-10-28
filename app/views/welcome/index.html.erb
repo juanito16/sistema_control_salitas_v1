@@ -1,3 +1,4 @@
+<%= javascript_include_tag "/assets/javascripts/chosen.jquery.min" %>
 <div class="span12">
   <h1>Sistema control salitas</h1>
 <div class="row">
@@ -33,7 +34,7 @@
       <div class="control-group">
         <%= f.label :employee,class: 'control-label' %>
         <div class="controls">
-          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+''+p.lastname, p.id ] }, { include_blank: true },class: "chosen-select input-large")%>
+          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+''+p.lastname, p.id ] }, { include_blank: true },class: "chosen-select_#{parlo.id}")%>
         </div>
       </div>
       <div class="control-group">
@@ -110,20 +111,21 @@
         pick12HourFormat: true
       });
     });
+     var config = {
+    '.chosen-select_<%=parlo.id%>' : {width:"251px"}
+  }
+  for (var selector in config) {
+    $(selector).chosen(config[selector]);
+  }
   </script>
   <%end%>
   </ul>
  </div>
 </div>
 </div>
- <%= javascript_include_tag "/assets/javascripts/chosen.jquery.min" %>
+ 
  <script type="text/javascript">
-   var config = {
-    '.chosen-select' : {width:"251px"}
-  }
-  for (var selector in config) {
-    $(selector).chosen(config[selector]);
-  }
+
  </script>
 
 
