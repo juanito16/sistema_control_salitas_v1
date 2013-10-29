@@ -34,7 +34,7 @@
     adapter: postgresql
     database: sistema_control_salitas
     username: postgres
-    password: 
+    password: developer
     pool: 5
     timeout: 5000
 
