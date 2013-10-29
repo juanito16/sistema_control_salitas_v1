@@ -8,13 +8,13 @@
     <meta name="author" content="Juan Alexander Rodriguez">
     <!-- Le styles -->
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-        <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-        <%= csrf_meta_tags %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
         <!-- stilos bootstrap -->
         <%= stylesheet_link_tag "/assets/stylesheets/bootstrap.min" %>
         <%= stylesheet_link_tag "/assets/stylesheets/DT_bootstrap" %>
         <%= stylesheet_link_tag "/assets/stylesheets/bootstrap-datetimepicker.min" %>
-        <%= stylesheet_link_tag "/assets/stylesheets/chosen.min" %>
+        <%= stylesheet_link_tag "/assets/stylesheets/chosen.min" %> 
+        <%= stylesheet_link_tag "/assets/stylesheets/demo_table" %>
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -22,6 +22,7 @@
       }
     </style>
     <%= stylesheet_link_tag "/assets/stylesheets/bootstrap-responsive.min" %>
+    <%= csrf_meta_tags %>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
