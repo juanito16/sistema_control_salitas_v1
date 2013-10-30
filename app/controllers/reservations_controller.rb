@@ -7,6 +7,7 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.all
+    @active_reservaciones="active"
   end
 
   # GET /reservations/1

@@ -6,6 +6,7 @@ class AdminsController < ApplicationController
   # GET /admins.json
   def index
     @admins = Admin.all
+    @active_admins="active"
   end
 
   # GET /admins/1

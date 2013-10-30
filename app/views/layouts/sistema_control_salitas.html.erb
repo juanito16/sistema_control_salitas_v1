@@ -7,14 +7,13 @@
     <meta name="description" content="Sistemas control de salitas">
     <meta name="author" content="Juan Alexander Rodriguez">
     <!-- Le styles -->
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+        <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+        <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
         <!-- stilos bootstrap -->
         <%= stylesheet_link_tag "/assets/stylesheets/bootstrap.min" %>
         <%= stylesheet_link_tag "/assets/stylesheets/DT_bootstrap" %>
         <%= stylesheet_link_tag "/assets/stylesheets/bootstrap-datetimepicker.min" %>
         <%= stylesheet_link_tag "/assets/stylesheets/chosen.min" %> 
-        <%= stylesheet_link_tag "/assets/stylesheets/demo_table" %>
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -44,9 +43,10 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
                 <li class="<%=@active_home%>"><%=link_to "<i class='icon-home icon-white'></i>&nbsp;Home".html_safe,welcome_index_path%></li>
-                <li class="<%=@active_employees%>"><%=link_to "<i class='icon-user icon-white'></i>&nbsp;Agregar Empleado".html_safe,employees_path%></li>
+                <li class="<%=@active_employees%>"><%=link_to "<i class='icon-briefcase icon-white'></i>&nbsp;Agregar Empleado".html_safe,employees_path%></li>
                 <li class="<%=@active_parlos%>"><%=link_to "<i class='icon-book icon-white'></i>&nbsp;Agregar Salita".html_safe, parlos_path%></li> 
-                <li><%=link_to "<i class='icon-list-alt icon-white'></i>&nbsp;Reservasiones".html_safe,reservations_path%></li>
+                <li class="<%=@active_reservaciones%>"><%=link_to "<i class='icon-list-alt icon-white'></i>&nbsp;Reservasiones".html_safe,reservations_path%></li>
+                <li class="<%=@active_admins%>"><%=link_to "<i class='icon-user icon-white'></i>&nbsp;Usuarios".html_safe,admins_path%></li>
             </ul>
           <div class="pull-right">
             <ul class="nav pull-right">
@@ -70,7 +70,7 @@
       </div>
     </div> 
     <div class="container">
-
+  <%=render :partial=>"/partials/notices" %>
       <!-- Main hero unit for a primary marketing message or call to action -->
 
       <!-- Example row of columns -->

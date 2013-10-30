@@ -1,7 +1,6 @@
 <div class="span12">
 <h1>Lista de reservaciones</h1>
-
-<table class="table table-striped table-bordered table-condensed">
+<table class="table table-striped table-bordered table-condensed" id="reservations">
   <thead>
     <tr>
       <th>Parlo</th>
@@ -34,3 +33,8 @@
 <br>
 <%= link_to 'New Reservation', new_reservation_path,class: "btn btn-primary" %>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#reservations').dataTable();
+});
+</script>

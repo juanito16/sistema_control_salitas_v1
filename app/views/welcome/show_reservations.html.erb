@@ -14,7 +14,7 @@
 	<tbody>
 		<%@reservation_for_parlo.each do |reservation_parlo| %>
 		<tr>
-			<td><%=reservation_parlo.id%></td>
+			<td><%=image_tag(reservation_parlo.employee.photo.profile)%></td>
 			<td><%=reservation_parlo.employee.name%></td>
 			<td><%=reservation_parlo.status%></td>
 			<td><%=reservation_parlo.start_time.strftime("%I:%M %p")%></td>
