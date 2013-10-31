@@ -34,20 +34,20 @@
       <div class="control-group">
         <%= f.label :employee,class: 'control-label' %>
         <div class="controls">
-          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+''+p.lastname, p.id ] }, { include_blank: true },id: "chosen-select_#{parlo.id}")%>
+          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+''+p.lastname, p.id ] }, { include_blank: true },id: "chosen-select_#{parlo.id}",required: "true")%>
         </div>
       </div>
       <div class="control-group">
         <%= f.label :status,class: 'control-label' %>
         <div class="controls">
-          <%= f.number_field :status ,style: "width:237px;"%>
+          <%= f.number_field :status ,style: "width:237px;",required: "true"%>
         </div>
       </div>
       <div class="control-group">
         <%= f.label :date_reservation,class: 'control-label' %>
         <div class="controls">
           <div id="datetimepicker_<%=parlo.id%>" class="input-append">
-              <input data-format="dd-MM-yyyy" type="text" name="reservation[date_reservation]" class="input-large">
+              <input data-format="dd-MM-yyyy" type="text" name="reservation[date_reservation]" class="input-large" required>
               <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -60,7 +60,7 @@
         <div class="controls">
           <%#= f.time_field :start_time %>
           <div id="start_time_<%=parlo.id%>" class="input-append">
-              <input data-format="HH:mm PP" type="text" name="reservation[start_time]" class="input-large">
+              <input data-format="HH:mm PP" type="text" name="reservation[start_time]" class="input-large" required>
               <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -73,7 +73,7 @@
         <div class="controls">
           <%#= f.time_field :end_time %>
           <div id="end_time_<%=parlo.id%>" class="input-append">
-              <input data-format="HH:mm PP" type="text" name="reservation[end_time]" class="input-large">
+              <input data-format="HH:mm PP" type="text" name="reservation[end_time]" class="input-large" required>
               <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>

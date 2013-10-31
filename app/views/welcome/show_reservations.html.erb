@@ -5,6 +5,7 @@
 		<tr>
 			<th>Reservacion</th>
 			<th>Nombre Empleado</th>
+			<th>Empresa</th>
 			<th>Status</th>
 			<th>Inicio</th>
 			<th>Final</th>
@@ -16,6 +17,7 @@
 		<tr>
 			<td><%=image_tag(reservation_parlo.employee.photo.profile)%></td>
 			<td><%=reservation_parlo.employee.name%></td>
+			<td><%=reservation_parlo.employee.company.name%></td>
 			<td><%=reservation_parlo.status%></td>
 			<td><%=reservation_parlo.start_time.strftime("%I:%M %p")%></td>
 			<td><%=reservation_parlo.end_time.strftime("%I:%M %p")%></td>
