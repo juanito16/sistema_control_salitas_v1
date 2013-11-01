@@ -45,11 +45,16 @@
           <a class="brand" href="#">Project name</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
+              <%if current_admin.admin_type==1%>
                 <li class="<%=@active_home%>"><%=link_to "<i class='icon-home icon-white'></i>&nbsp;Home".html_safe,welcome_index_path%></li>
                 <li class="<%=@active_employees%>"><%=link_to "<i class='icon-briefcase icon-white'></i>&nbsp;Agregar Empleado".html_safe,employees_path%></li>
                 <li class="<%=@active_parlos%>"><%=link_to "<i class='icon-book icon-white'></i>&nbsp;Agregar Salita".html_safe, parlos_path%></li> 
                 <li class="<%=@active_reservaciones%>"><%=link_to "<i class='icon-list-alt icon-white'></i>&nbsp;Reservasiones".html_safe,reservations_path%></li>
                 <li class="<%=@active_admins%>"><%=link_to "<i class='icon-user icon-white'></i>&nbsp;Usuarios".html_safe,admins_path%></li>
+              <%else%>
+                <li class="<%=@active_home%>"><%=link_to "<i class='icon-home icon-white'></i>&nbsp;Home".html_safe,welcome_index_path%></li>
+                <li class="<%=@active_reservaciones%>"><%=link_to "<i class='icon-list-alt icon-white'></i>&nbsp;Reservasiones".html_safe,reservations_path%></li>
+              <%end%>
             </ul>
           <div class="pull-right">
             <ul class="nav pull-right">
