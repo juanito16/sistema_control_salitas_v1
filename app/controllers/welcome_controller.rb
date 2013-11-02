@@ -5,23 +5,27 @@ class WelcomeController < ApplicationController
   def index
   	@active_home="active"
   	@parlos = Parlo.where("country_id=?",current_admin.country_id)
-  	#@reservations=Reservation.includes(:parlo,:employee).where("parlos.id=? and employees.id=? and parlos.country_id=?",@parlo,1,1)
     @reservation_parlo = Reservation.new
   end
 
   def show_reservations
-      @reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",params[:id]).references(:parlo)
+    @reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",params[:id]).references(:parlo)
   end
 
   def create_reservation
-    @reservation_new = Reservation.new(reservation_params)
-    if @reservation_new.save
-      redirect_to welcome_index_path, notice: 'Reservation was successfully created.'
+    reservation_new = Reservation.new(reservation_params)
+    reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",reservation_new.parlo_id).references(:parlo).first
+    if reservation_for_parlo.blank?
+       reservation_new.save
+       redirect_to welcome_index_path, notice: 'Reservation realizada Exitosamente'
+    elsif reservation_new.start_time=reservation_for_parlo.start_time
+          redirect_to welcome_index_path, notice: 'La Salita Que intento Reservar ya se ecuentra utilizada por: '+reservation_for_parlo.employee.name
     else
-      redirect_to welcome_index_path, notice: 'Reservation no realizada.'
-    end    
+      reservation_new.save
+      redirect_to welcome_index_path, notice: 'Reservation realizada Exitosamente'
+    end 
   end
-    # Never trust parameters from the scary internet, only allow the white list through.
+  
   private
     def reservation_params
       params.require(:reservation).permit(:parlo_id, :employee_id, :status, :date_reservation, :start_time, :end_time)
