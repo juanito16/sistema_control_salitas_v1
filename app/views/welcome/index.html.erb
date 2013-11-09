@@ -5,7 +5,7 @@
   <ul class="thumbnails">
   <%@parlos.each do |parlo|%>
   <%if parlo.reservations.blank?%>
-  <li class="span4" style="text-align:center;background-color:#DEA1A1;">
+  <li class="span4 text-center" style="background-color:#DEA1A1;">
     <a href="#" id="modal_views_reservations_<%=parlo.id%>" class="thumbnail">
       <input type="buttom" id="" class="btn btn-link" value="Reservaciones"><span class="badge badge-important pull-right"><%=parlo.reservations.size%></span>
       <h4><%=parlo.name_parlo%></h4>
@@ -13,7 +13,7 @@
     </a>
   </li>
   <%elsif parlo.reservations%>
-  <li class="span4" style="text-align:center;background-color:#CCC;">
+  <li class="span4 text-center" style="background-color:#CCC;">
     <%=link_to show_reservations_for_parlo_path(parlo),class: "thumbnail" do%>
     <input type="buttom" id="modal_views_reservations_<%=parlo.id%>" class="btn btn-link" value="agregar otra reservacion"><span class="badge badge-important pull-right"><%=parlo.reservations.size%></span>
     <h4><%=parlo.name_parlo%></h4>

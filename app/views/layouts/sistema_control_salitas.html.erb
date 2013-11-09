@@ -63,7 +63,7 @@
                         <li><a href="/user/preferences"><i class="icon-cog"></i> Preferences</a></li>
                         <li><a href="/help/support"><i class="icon-envelope"></i> Contact Support</a></li>
                         <li class="divider"></li>
-                        <li><%=link_to "<i class='icon-off'></i> Logout".html_safe,destroy_admin_session_path(:authenticity_token => form_authenticity_token()), :method=>:delete%></li>
+                        <li><%=link_to "<i class='icon-off'></i> Logout".html_safe,destroy_admin_session_path, :method=>:delete%></li>
                     </ul>
                 </li>
             </ul>
@@ -78,7 +78,7 @@
       </div>
     </div> 
     <div class="container">
-   <%=render :partial=>"/partials/notices" %>
+    <%=render :partial=>"/partials/notices" %>
       <!-- Main hero unit for a primary marketing message or call to action -->
 
       <!-- Example row of columns -->

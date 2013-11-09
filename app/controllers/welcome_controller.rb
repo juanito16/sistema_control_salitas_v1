@@ -19,7 +19,7 @@ class WelcomeController < ApplicationController
        reservation_new.save
        redirect_to welcome_index_path, notice: 'Reservation realizada Exitosamente'
     elsif reservation_new.start_time=reservation_for_parlo.start_time
-          redirect_to welcome_index_path, notice: 'La Salita Que intento Reservar ya se ecuentra utilizada por: '+reservation_for_parlo.employee.name
+          redirect_to welcome_index_path, notice: 'La Salita Que intento Reservar ya se ecuentra utilizada por: '+reservation_for_parlo.employee.name+""+reservation_for_parlo.employee.lastname
     else
       reservation_new.save
       redirect_to welcome_index_path, notice: 'Reservation realizada Exitosamente'
