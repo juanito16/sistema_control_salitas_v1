@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.includes(:parlo).where("parlos.country_id=?",current_admin.country_id).references(:parlo)
     @active_reservaciones="active"
   end
 
