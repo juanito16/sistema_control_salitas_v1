@@ -12,13 +12,19 @@ class WelcomeController < ApplicationController
     @reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",params[:id]).references(:parlo)
   end
 
+  def destroy_reservations
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_to show_reservations_for_parlo_path(@reservation.parlo.id),notice: "Reservacion Eliminada Exitosamente!"
+  end
+
   def create_reservation
     reservation_new = Reservation.new(reservation_params)
     reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",reservation_new.parlo_id).references(:parlo).first
     if(reservation_for_parlo.blank?)
        reservation_new.save
        redirect_to welcome_index_path, notice: 'Reservation realizada Exitosamente'
-    elsif(reservation_new.start_time=reservation_for_parlo.start_time)
+    elsif(reservation_new.start_time==reservation_for_parlo.start_time)
           redirect_to welcome_index_path, notice: 'La Salita Que intento Reservar ya se ecuentra utilizada por: '+reservation_for_parlo.employee.name+""+reservation_for_parlo.employee.lastname
     else
       reservation_new.save

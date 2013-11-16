@@ -11,6 +11,7 @@ SistemaControlSalitasV1::Application.routes.draw do
   get "welcome/index"
   # get "welcome/show_reservations"
   post "welcome/create_reservation"
+  delete "welcome/destroy_reservations/:id"=>"welcome#destroy_reservations",as: "destroy_reservations_parlo"
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
