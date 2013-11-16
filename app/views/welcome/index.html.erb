@@ -5,16 +5,19 @@
   <ul class="thumbnails">
   <%@parlos.each do |parlo|%>
   <%if parlo.reservations.blank?%>
-  <li class="span4 text-center" style="background-color:#DEA1A1;">
-    <a href="#" id="modal_views_reservations_<%=parlo.id%>" class="thumbnail">
-      <span class="badge badge-important pull-right"><%=parlo.reservations.size%></span>
+  <li class="span4 text-center">
+    <a href="#" id="modal_views_reservations_<%=parlo.id%>" class="thumbnail btn btn-success">
+      <span class="badge badge-success pull-right"><%=parlo.reservations.size%></span>
       <h4><%=parlo.name_parlo%></h4>
     </a>
   </li>
   <%elsif parlo.reservations%>
+    <%if parlo.reservations%>
+      <%ocupada="btn btn-danger"%>
+    <%end%>
   <%reservasions=Reservation.includes(:parlo).where("parlos.id=?",parlo.id).references(:parlo).first%>
-  <li class="span4 text-center" style="background-color:#CCC;" id="tooltip_<%=parlo.id%>" title="<%=reservasions.employee.name%>">
-    <%=link_to show_reservations_for_parlo_path(parlo),class: "thumbnail" do%>
+  <li class="span4 text-center" id="tooltip_<%=parlo.id%>" title="<%=reservasions.employee.name%>">
+    <%=link_to show_reservations_for_parlo_path(parlo),class: "thumbnail #{ocupada}" do%>
     <span href="#" id="modal_views_reservations_<%=parlo.id%>" class="pull-left"><i class="icon-plus"></i></span><span class="badge badge-important pull-right"><%=parlo.reservations.size%></span>
     <h4><%=parlo.name_parlo%></h4>
     <%end%>
