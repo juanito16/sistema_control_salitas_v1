@@ -20,17 +20,17 @@ class WelcomeController < ApplicationController
 
   def create_reservation
     reservation_new = Reservation.new(reservation_params)
-    reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",reservation_new.parlo_id).references(:parlo).first
-    if(reservation_for_parlo.blank?)
+    reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",reservation_new.parlo_id).references(:parlo).last
+    if reservation_for_parlo.blank?
        reservation_new.save
        redirect_to welcome_index_path, notice: 'Reservation realizada Exitosamente'
-    elsif(reservation_new.start_time==reservation_for_parlo.start_time)
+    elsif reservation_new.start_time==reservation_for_parlo.start_time
           redirect_to welcome_index_path
           flash[:error]= 'La Salita Que intento Reservar ya se ecuentra utilizada por: '+reservation_for_parlo.employee.name+""+reservation_for_parlo.employee.lastname
     else
       reservation_new.save
       redirect_to welcome_index_path, notice: 'Reservation realizada Exitosamente'
-    end 
+    end
   end
   
   private
