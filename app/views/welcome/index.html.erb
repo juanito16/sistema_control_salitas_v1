@@ -15,8 +15,8 @@
     <%if parlo.reservations%>
       <%ocupada="btn btn-danger"%>
     <%end%>
-  <%reservasions=Reservation.includes(:parlo).where("parlos.id=?",parlo.id).references(:parlo).limit(2)%>
-  <li class="span4 text-center" id="tooltip_<%=parlo.id%>" title="<%reservasions.each do |user|%><%=user.employee.name%><%end%>">
+    <%reservasions=Reservation.includes(:parlo).where("parlos.id=?",parlo.id).references(:parlo).limit(2)%>
+  <li class="span4 text-center" id="tooltip_<%=parlo.id%>" data-original-title="<%reservasions.each do |user|%><%=link_to '#{user.employee.name}<br>'.html_safe %><% end%>">
     <%=link_to show_reservations_for_parlo_path(parlo),class: "thumbnail #{ocupada}" do%>
     <span href="#" id="modal_views_reservations_<%=parlo.id%>" class="pull-left"><i class="icon-plus"></i></span><span class="badge badge-important pull-right"><%=parlo.reservations.size%></span>
     <h4><%=parlo.name_parlo%></h4>
@@ -25,7 +25,7 @@
   <%end%>
   <script type="text/javascript">
   $("#tooltip_<%=parlo.id%>").on("mouseover",function(){
-    $('#tooltip_<%=parlo.id%>').tooltip('show');
+    $(this).tooltip('show');
   });
   </script>
   <!-- MODAL FORMULARIO RESERVACIONES -->
@@ -40,7 +40,11 @@
       <div class="control-group">
         <%= f.label :employee,class: 'control-label' %>
         <div class="controls">
+          <%if current_admin.admin_type==1%>
           <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+''+p.lastname, p.id ] }, { include_blank: true },id: "chosen-select_#{parlo.id}",required: "true")%>
+          <%else%>
+          <%= f.select(:employee_id, Employee.where("country_id=?",current_admin.country_id).collect {|p| [ p.name+''+p.lastname, p.id ] }, { include_blank: true },id: "chosen-select_#{parlo.id}",required: "true")%>
+          <%end%>
         </div>
       </div>
       <div class="control-group">
