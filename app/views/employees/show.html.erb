@@ -30,6 +30,6 @@
     <%=image_tag(@employee.photo.show) %>
   </p>
 </div>
-<%= link_to 'Edit', edit_employee_path(@employee) %> |
-<%= link_to 'Back', employees_path %>
+<%= link_to 'Edit', edit_employee_path(@employee),class: "btn" %> |
+<%= link_to 'Back', employees_path,class: "btn" %>
 </div>
