@@ -14,7 +14,7 @@
   <%elsif parlo.reservations%>
       <%ocupada="btn btn-danger"%>
     <%reservasions=Reservation.includes(:parlo).where("parlos.id=?",parlo.id).references(:parlo).limit(2)%>
-  <li class="span4 text-center toltip_info" data-original-title="<%reservasions.each do |user|%><%=user.employee.name%>>>>><%end%>">
+  <li class="span4 text-center toltip_info" data-original-title="<%reservasions.each do |user|%><%=user.employee.name%>>>>><%=user.end_time.strftime('%H:%M')%><%end%>">
     <%=link_to show_reservations_for_parlo_path(parlo),class: "thumbnail #{ocupada}" do%>
     <span href="#" id="modal_views_reservations_<%=parlo.id%>" class="pull-left"><i class="icon-plus"></i></span><span class="badge badge-important pull-right"><%=parlo.reservations.size%></span>
     <h4><%=parlo.name_parlo%></h4>
