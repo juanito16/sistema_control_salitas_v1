@@ -43,7 +43,8 @@
       <div class="control-group">
         <%= f.label :status,class: 'control-label' %>
         <div class="controls">
-          <%= f.number_field :status ,style: "width:237px;",required: "true"%>
+          <%#= f.number_field :status ,style: "width:237px;",required: "true"%>
+          <%= f.select(:status, options_for_select([['Ocupada', 1], ['Reservada', 2]]), { include_blank: "Seleccione un estado" },style: "width:253px;",required: :true) %>
         </div>
       </div>
       <div class="control-group">
