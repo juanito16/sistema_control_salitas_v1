@@ -3,14 +3,14 @@
 <table class="table table-bordered table-condensed" id="admins">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Lastname</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
       <th>Email</th> 
-      <th>Type</th>
-      <th>Country</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Rol</th>
+      <th>País</th>
+      <th>Mostrar</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
     </tr>
   </thead>
   <tbody>
@@ -21,15 +21,15 @@
         <td><%= admin.email%></td>
         <td><%=admin.admin_type==1? "Administrador" : "Secretaria"%></td>
         <td><%= admin.country.name_country%></td>
-        <td><%= link_to "<i class='icon-zoom-in icon-white'></i> Show".html_safe, admin ,class: "btn btn-info"%></td>
-        <td><%= link_to "<i class='icon-edit icon-white'></i> Edit".html_safe, edit_admin_path(admin),class: "btn btn-success" %></td>
-        <td><%= link_to "<i class='icon-trash icon-white'></i> Destroy".html_safe, admin, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
+        <td><%= link_to "<i class='icon-zoom-in icon-white'></i>".html_safe, admin ,class: "btn btn-info"%></td>
+        <td><%= link_to "<i class='icon-edit icon-white'></i>".html_safe, edit_admin_path(admin),class: "btn btn-success" %></td>
+        <td><%= link_to "<i class='icon-trash icon-white'></i>".html_safe, admin, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to 'New Admin', new_admin_path,class: "btn" %>
+<%= link_to 'Nuevo usuario', new_admin_path,class: "btn" %>
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
