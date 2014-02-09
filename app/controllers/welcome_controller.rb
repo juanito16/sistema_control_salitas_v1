@@ -5,7 +5,9 @@ class WelcomeController < ApplicationController
   def index
   	@active_home="active"
   	@parlos = Parlo.where("country_id=?",current_admin.country_id)
+    #parlos_id=Parlo.all
     @reservation_parlo = Reservation.new
+    #@reservasions_ocupation=Reservation.includes(:parlo).where("parlos.id=?",parlos_id.id).references(:parlo).limit(2)
   end
 
   def show_reservations
