@@ -13,9 +13,9 @@
   </li>
   <%elsif parlo.reservations%>
     <%parlo.reservations.each do |status_reserva|%>
-      <%if status_reserva.status==1%>
+      <%if status_reserva.status==0%>
         <%@ocupada="btn btn-danger"%>
-      <%elsif status_reserva.status==2%>
+      <%elsif status_reserva.status==1%>
         <%@ocupada="btn btn-primary"%>
       <% end -%>
     <% end -%> 
@@ -39,16 +39,16 @@
         <%= f.label :employee,class: 'control-label' %>
         <div class="controls">
           <%if current_admin.admin_type==1%>
-          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+' '+p.lastname, p.id ] }, { include_blank: true },id: "chosen-select_#{parlo.id}",required: "true")%>
+          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+' '+p.lastname, p.id ] }, { include_blank: "-- Seleccione empleado --" },id: "chosen-select_#{parlo.id}",required: "true")%>
           <%else%>
-          <%= f.select(:employee_id, Employee.where("country_id=?",current_admin.country_id).collect {|p| [ p.name+' '+p.lastname, p.id ] }, { include_blank: true },id: "chosen-select_#{parlo.id}",required: "true")%>
+          <%= f.select(:employee_id, Employee.where("country_id=?",current_admin.country_id).collect {|p| [ p.name+' '+p.lastname, p.id ] }, { include_blank: "-- Seleccione empleado --" },id: "chosen-select_#{parlo.id}",required: "true")%>
           <%end%>
         </div>
       </div>
       <div class="control-group">
         <%= f.label :status,class: 'control-label' %>
         <div class="controls">
-          <%= f.select(:status, options_for_select([['Ocupada', 1], ['Reservada', 2]]), { include_blank: "Seleccione un estado" },style: "width:253px;",required: :true) %>
+          <%= f.select(:status, options_for_select(STATUS_RESERVATIONS), { include_blank: "Seleccione un estado" },style: "width:253px;",required: :true) %>
         </div>
       </div>
       <div class="control-group">

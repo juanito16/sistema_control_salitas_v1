@@ -19,7 +19,7 @@
         <td><%= admin.name %></td>
         <td><%= admin.lastname %></td>
         <td><%= admin.email%></td>
-        <td><%=admin.admin_type==1? "Administrador" : "Secretaria"%></td>
+        <td><%=admin.admin_type==0? "Administrador" : "Secretaria"%></td>
         <td><%= admin.country.name_country%></td>
         <td><%= link_to "<i class='icon-zoom-in icon-white'></i>".html_safe, admin ,class: "btn btn-info"%></td>
         <td><%= link_to "<i class='icon-edit icon-white'></i>".html_safe, edit_admin_path(admin),class: "btn btn-success" %></td>

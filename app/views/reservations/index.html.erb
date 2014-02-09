@@ -19,7 +19,7 @@
       <tr>
         <td><%= reservation.parlo.name_parlo %></td>
         <td><%= reservation.employee.name %></td>
-        <td><%= reservation.status %></td>
+        <td><%= reservation.status==0? "Ocupada": "Reservada" %></td>
         <td><%= reservation.date_reservation %></td>
         <td><%= reservation.start_time.strftime("%I:%M %p") %></td>
         <td><%= reservation.end_time.strftime("%I:%M %p") %></td>

@@ -42,7 +42,7 @@
   <div class="control-group">
     <%= f.label :admin_type ,class: "control-label"%>
     <div class="controls">
-    <%= f.select(:admin_type, options_for_select([['Admin', 1], ['Resepsionista', 2]]), { include_blank: true },required: :true) %>
+    <%= f.select(:admin_type, options_for_select(TYPE_ADMIN), { include_blank: true },required: :true) %>
     </div>
   </div>
   <div class="control-group">
