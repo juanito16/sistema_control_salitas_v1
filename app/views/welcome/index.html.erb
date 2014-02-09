@@ -12,22 +12,20 @@
     </a>
   </li>
   <%elsif parlo.reservations%>
-    <%if parlo.reservations%>
-      <%ocupada="btn btn-danger"%>
-    <%end%>
-  <%reservasions=Reservation.includes(:parlo).where("parlos.id=?",parlo.id).references(:parlo).limit(2)%>
-  <li class="span4 text-center" id="tooltip_<%=parlo.id%>" title="<%reservasions.each do |user|%><%=user.employee.name%><%end%>">
-    <%=link_to show_reservations_for_parlo_path(parlo),class: "thumbnail #{ocupada}" do%>
+    <%parlo.reservations.each do |status_reserva|%>
+      <%if status_reserva.status==0%>
+        <%@ocupada="btn btn-danger"%>
+      <%elsif status_reserva.status==1%>
+        <%@ocupada="btn btn-primary"%>
+      <% end -%>
+    <% end -%> 
+  <li class="span4 text-center toltip_info" data-original-title="@reservasions_ocupation">
+    <%=link_to show_reservations_for_parlo_path(parlo),class: "thumbnail #{@ocupada}" do%>
     <span href="#" id="modal_views_reservations_<%=parlo.id%>" class="pull-left"><i class="icon-plus"></i></span><span class="badge badge-important pull-right"><%=parlo.reservations.size%></span>
     <h4><%=parlo.name_parlo%></h4>
     <%end%>
   </li>
   <%end%>
-  <script type="text/javascript">
-  $("#tooltip_<%=parlo.id%>").on("mouseover",function(){
-    $('#tooltip_<%=parlo.id%>').tooltip('show');
-  });
-  </script>
   <!-- MODAL FORMULARIO RESERVACIONES -->
   <div id="modal_reservation_parlo_<%=parlo.id%>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <%= form_for(@reservation_parlo,html:{class: 'form-horizontal'},:url=>welcome_create_reservation_path,method: "POST") do |f| %>
@@ -36,24 +34,28 @@
       <h3 id="myModalLabel">Reservatios <%=parlo.name_parlo%></h3>
     </div>
     <div class="modal-body">
-      <input type="hidden" name="reservation[parlo_id]" id="reservation_parlo_id" value="<%=parlo.id%>">
+      <%=f.hidden_field :parlo_id,value: parlo.id%>
       <div class="control-group">
         <%= f.label :employee,class: 'control-label' %>
         <div class="controls">
-          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+''+p.lastname, p.id ] }, { include_blank: true },id: "chosen-select_#{parlo.id}",required: "true")%>
+          <%if current_admin.admin_type==1%>
+          <%= f.select(:employee_id, Employee.all.collect {|p| [ p.name+' '+p.lastname, p.id ] }, { include_blank: "-- Seleccione empleado --" },id: "chosen-select_#{parlo.id}",required: "true")%>
+          <%else%>
+          <%= f.select(:employee_id, Employee.where("country_id=?",current_admin.country_id).collect {|p| [ p.name+' '+p.lastname, p.id ] }, { include_blank: "-- Seleccione empleado --" },id: "chosen-select_#{parlo.id}",required: "true")%>
+          <%end%>
         </div>
       </div>
       <div class="control-group">
         <%= f.label :status,class: 'control-label' %>
         <div class="controls">
-          <%= f.number_field :status ,style: "width:237px;",required: "true"%>
+          <%= f.select(:status, options_for_select(STATUS_RESERVATIONS), { include_blank: "Seleccione un estado" },style: "width:253px;",required: :true) %>
         </div>
       </div>
       <div class="control-group">
         <%= f.label :date_reservation,class: 'control-label' %>
         <div class="controls">
           <div id="datetimepicker_<%=parlo.id%>" class="input-append">
-              <input data-format="dd-MM-yyyy" type="text" name="reservation[date_reservation]" class="input-large" required>
+              <%=f.text_field :date_reservation,data:{format: "dd-MM-yyyy"},class: "input-large",required: "true"%>
               <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -64,9 +66,8 @@
       <div class="control-group">
         <%= f.label :start_time,class: 'control-label' %>
         <div class="controls">
-          <%#= f.time_field :start_time %>
           <div id="start_time_<%=parlo.id%>" class="input-append">
-              <input data-format="HH:mm PP" type="text" name="reservation[start_time]" class="input-large" required>
+              <%=f.text_field :start_time,data:{format: "HH:mm PP"},class: "input-large",required: "true"%>
               <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -78,7 +79,7 @@
         <%= f.label :end_time,class: 'control-label' %>
         <div class="controls">
           <div id="end_time_<%=parlo.id%>" class="input-append">
-              <input data-format="HH:mm PP" type="text" name="reservation[end_time]" class="input-large" required>
+              <%=f.text_field :end_time,data:{format: "HH:mm PP"},class: "input-large",required: "true"%>
               <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                 </i>
@@ -99,35 +100,35 @@
     e.preventDefault();
     $('#modal_reservation_parlo_<%=parlo.id%>').modal('show');
   });
-  $(function() {
+   $(function() {
     $('#datetimepicker_<%=parlo.id%>').datetimepicker({
       pickTime: false
     });
   });
-  $(function() {
+    $(function() {
       $('#start_time_<%=parlo.id%>').datetimepicker({
         pickDate: false,
         pick12HourFormat: true
       });
     });
-  $(function() {
-      $('#end_time_<%=parlo.id%>').datetimepicker({
-        pickDate: false,
-        pick12HourFormat: true
+    $(function() {
+        $('#end_time_<%=parlo.id%>').datetimepicker({
+          pickDate: false,
+          pick12HourFormat: true
+        });
       });
-    });
-     var config = {
-    '#chosen-select_<%=parlo.id%>' : {width:"251px"}
-  }
-  for (var selector in config) {
-    $(selector).chosen(config[selector]);
-  }
+    $("#chosen-select_<%=parlo.id%>").chosen({width: "251px"}); 
   </script>
   <%end%>
   </ul>
  </div>
 </div>
 </div>
+  <script type="text/javascript">
+  $(".toltip_info").on("mouseover",function(){
+    $(this).tooltip('show');
+  });
+  </script>
 
 
 

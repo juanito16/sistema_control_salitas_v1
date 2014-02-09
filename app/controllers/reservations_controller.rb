@@ -6,7 +6,11 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.includes(:parlo).where("parlos.country_id=?",current_admin.country_id).references(:parlo)
+    if current_admin.admin_type==2
+      @reservations = Reservation.includes(:parlo).where("parlos.country_id=?",current_admin.country_id).references(:parlo)
+    else
+      @reservations = Reservation.all
+    end
     @active_reservaciones="active"
   end
 

@@ -5,11 +5,18 @@ class WelcomeController < ApplicationController
   def index
   	@active_home="active"
   	@parlos = Parlo.where("country_id=?",current_admin.country_id)
+    #parlos_id=Parlo.all
     @reservation_parlo = Reservation.new
+    #@reservasions_ocupation=Reservation.includes(:parlo).where("parlos.id=?",parlos_id.id).references(:parlo).limit(2)
   end
 
   def show_reservations
-    @reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",params[:id]).references(:parlo)
+    if current_admin.admin_type==1
+      @reservation_for_parlo=Reservation.includes(:parlo,:employee).where("parlos.id=?",params[:id])
+    else
+      @reservation_for_parlo=Reservation.includes(:parlo,:employee).where("parlos.id=? and employees.country_id=?",params[:id],current_admin.country_id)
+    end
+    
   end
 
   def destroy_reservations
@@ -20,17 +27,17 @@ class WelcomeController < ApplicationController
 
   def create_reservation
     reservation_new = Reservation.new(reservation_params)
-    reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",reservation_new.parlo_id).references(:parlo).first
-    if(reservation_for_parlo.blank?)
+    reservation_for_parlo=Reservation.includes(:parlo).where("parlos.id=?",reservation_new.parlo_id).references(:parlo).last
+    if reservation_for_parlo.blank?
        reservation_new.save
        redirect_to welcome_index_path, notice: 'Reservation realizada Exitosamente'
-    elsif(reservation_new.start_time==reservation_for_parlo.start_time)
+    elsif reservation_new.start_time==reservation_for_parlo.start_time
           redirect_to welcome_index_path
           flash[:error]= 'La Salita Que intento Reservar ya se ecuentra utilizada por: '+reservation_for_parlo.employee.name+""+reservation_for_parlo.employee.lastname
     else
       reservation_new.save
       redirect_to welcome_index_path, notice: 'Reservation realizada Exitosamente'
-    end 
+    end
   end
   
   private
