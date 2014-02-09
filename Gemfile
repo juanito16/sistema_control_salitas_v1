@@ -32,7 +32,8 @@ gem 'carrierwave'
 gem 'rmagick', '2.13.1'
 gem 'will_paginate', '~> 3.0'
 gem 'devise'
-
+#HEROKU GEMS
+gem 'rails_12factor', group: :production
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
