@@ -18,7 +18,7 @@ class ParlosController < ApplicationController
 
   # GET /parlos/new
   def new
-    @parlo = Parlo.new
+    #@parlo = Parlo.new
   end
 
   # GET /parlos/1/edit
