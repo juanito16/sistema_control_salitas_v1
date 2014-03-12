@@ -1,5 +1,4 @@
 <div class="span12">
-	<%@parlo=Parlo.where("id=?",params[:id]).first%>
 	<h3>Reservaciones: <%=@parlo.name_parlo%> <span class="badge badge-inverse"><%=@reservation_for_parlo.size%></span></h3>
 <table class="table table-striped table-bordered table-condensed">
 	<thead>

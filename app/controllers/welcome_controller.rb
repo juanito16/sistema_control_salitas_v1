@@ -5,16 +5,17 @@ class WelcomeController < ApplicationController
   def index
   	@active_home="active"
     if current_admin.admin_type==1
-  	 @parlos = Parlo.where("country_id=?",current_admin.country_id)
+  	 @parlos = Parlo.where("country_id=?",current_admin.country_id).order("created_at ASC")
     else
-      @parlos = Parlo.all
+      @parlos = Parlo.order("created_at ASC")
     end
     #parlos_id=Parlo.all
     @reservation_parlo = Reservation.new
-    #@reservasions_ocupation=Reservation.includes(:parlo).where("parlos.id=?",parlos_id.id).references(:parlo).limit(2)
+    @reservasions_ocupation=Reservation.includes(:parlo).where("parlos.id=?",@parlos.ids).references(:parlo).limit(2)
   end
 
   def show_reservations
+    @parlo=Parlo.where("id=?",params[:id]).first
     if current_admin.admin_type==1
       @reservation_for_parlo=Reservation.includes(:parlo,:employee).where("parlos.id=?",params[:id])
     else
