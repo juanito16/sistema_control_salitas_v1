@@ -11,7 +11,7 @@ class WelcomeController < ApplicationController
     end
     #parlos_id=Parlo.all
     @reservation_parlo = Reservation.new
-    @reservasions_ocupation=Reservation.includes(:parlo).where("parlos.id=?",@parlos.ids).references(:parlo).limit(2)
+    # @reservasions_ocupation=Parlo.where("parlo_id=?",@parlos.ids).limit(2)
   end
 
   def show_reservations
